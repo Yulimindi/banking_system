@@ -28,4 +28,21 @@ public class AdminService {
 	public List<ProductDto> getProducts() {
 		return dao.getProducts();
 	}
+	
+	public AdminDto getAdmin() {
+		dao.getAdmin();
+	}
+	
+	public List<AdminDto> getAdminList() {
+		dao.getAdmins();
+	}
+	
+	public UserDto getUser() {
+		dao.getUser();
+	}
+	
+	public List<UserDto> getUserList() {
+		dao.getUsers();
+	}
+	
 }
