@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.admin.dao.IListDao;
-import com.example.demo.admin.dao.IProductDao;
+import com.example.demo.admin.dao.IAdminProductDao;
 import com.example.demo.admin.dto.AdminDto;
 import com.example.demo.admin.dto.ProductDto;
 import com.example.demo.personal.dto.UserDTO;
@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AdminService {
 	
-	final IProductDao productDao;
+	final IAdminProductDao productDao;
 	final IListDao listDao;
 	
 	public boolean makeProduct(ProductDto dto) {
