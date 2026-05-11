@@ -17,8 +17,9 @@ import lombok.RequiredArgsConstructor;
 public class ProductService {
 	
 	private final ProductDao dao;
-	
+//	상품 목록 조회 + 페이지네이션 처리
 	public ProductPageResponseDto getProductList(ProductListRequestDto dto) {
+//		DTO 안에서 : startRow 계산 endRow 계산
 		dto.calculatePaging();
 		
 		List<ProductListResponseDto> products = dao.getProductList(dto);
