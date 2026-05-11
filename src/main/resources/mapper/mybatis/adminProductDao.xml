@@ -47,7 +47,7 @@
            illegal_contract_cancel,
            depositor_protection,
            rate_category)
-           values ( #{product_id}, #{product_name}, #{is_active}, #{product_type},
+           values ( SEQ_PRODUCT.NEXTVAL, #{product_name}, #{is_active}, #{product_type},
             #{min_period_month}, #{max_period_month}, #{min_amount}, #{max_amount},
             #{target_customer}, #{product_desc}, #{interest_payment_type}, #{applied_exchange_rate_type},
     #{created_at}, #{updated_at}, #{created_by}, #{updated_by}, #{approver}, #{approve_status},

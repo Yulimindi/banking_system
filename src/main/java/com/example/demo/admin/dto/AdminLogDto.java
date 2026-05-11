@@ -12,7 +12,7 @@ public class AdminLogDto {
     Long log_id;
     String url;
     String method;
-    String elapsed_ms;
+    Long elapsed_ms;
     String request_body;
-    String response_code;
+    int response_code;
 }
