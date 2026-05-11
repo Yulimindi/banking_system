@@ -21,7 +21,7 @@
         )
         VALUES
             (
-                #{admin_id},
+                SEQ_ADMIN_USERS.NEXTVAL,
                 #{login_id},
                 #{password},
                 #{department},
@@ -37,11 +37,8 @@
             parameterType="com.example.demo.admin.dto.AdminDto"
             resultType="com.example.demo.admin.dto.AdminDto">
 
-        SELECT
-            admin_id,
-            admin_pw
-        FROM ADMIN_USERS
-        WHERE admin_id = #{admin_id}
+        SELECT * FROM ADMIN_USERS
+        WHERE login_id = #{login_id}
 
     </select>
 
