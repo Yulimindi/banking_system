@@ -233,9 +233,7 @@ body {
 }
 
 /* 메뉴 hover 시 dropdown */
-.nav-menu:hover + .full-dropdown,
-.full-dropdown:hover {
-
+.menu-area:hover .full-dropdown {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
