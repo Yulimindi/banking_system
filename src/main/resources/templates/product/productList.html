@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<title>Insert title here</title>
+</head>
+<body>
+
+    <!-- 헤더 -->
+    <div th:replace="~{header :: header}"></div>
+
+
+    <!-- 상단 배너 -->
+    <section class="product-top-banner">
+
+        <div class="banner-inner">
+
+            <div class="banner-text">
+
+                <p class="banner-sub-title">
+                    BNK 금융상품
+                </p>
+
+                <h1 th:text="${pageTitle}">
+                    개인 상품몰
+                </h1>
+
+                <p class="banner-desc">
+                    고객님께 꼭 맞는 금융상품을 만나보세요.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- 상품 검색 -->
+    <section class="product-search-section">
+
+        <div class="search-inner">
+
+            <form method="get">
+
+                <div class="search-box">
+
+                    <input type="text"
+                           name="keyword"
+                           placeholder="상품명을 검색하세요"
+                           th:value="${param.keyword}">
+
+                    <button type="submit">
+                        검색
+                    </button>
+
+                </div>
+
+
+                <div class="filter-wrap">
+
+                    <!-- 상품 유형 -->
+                    <select name="productType">
+
+                        <option value="">
+                            전체 상품
+                        </option>
+
+                        <option value="예금">
+                            예금
+                        </option>
+
+                        <option value="적금">
+                            적금
+                        </option>
+
+                        <option value="외화예금">
+                            외화예금
+                        </option>
+
+                        <option value="외화적금">
+                            외화적금
+                        </option>
+
+                    </select>
+
+
+                    <!-- 정렬 -->
+                    <select name="sort">
+
+                        <option value="">
+                            최신순
+                        </option>
+
+                        <option value="rate">
+                            금리순
+                        </option>
+
+                        <option value="name">
+                            이름순
+                        </option>
+
+                    </select>
+
+                    <button type="submit">
+                        적용
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 상품 리스트 -->
+    <section class="product-list-section">
+
+        <div class="product-list-inner">
+
+            <div class="product-grid">
+
+                <div class="product-card"
+                     th:each="item : ${products.products}">
+
+                    <!-- 카테고리 -->
+                    <div class="card-top">
+
+                        <span class="product-category"
+                              th:text="${item.rateCategory}">
+                            국내
+                        </span>
+
+                        <span class="product-type"
+                              th:text="${item.productType}">
+                            예금
+                        </span>
+
+                    </div>
+
+
+                    <!-- 상품명 -->
+                    <h2 class="product-name"
+                        th:text="${item.productName}">
+                        상품명
+                    </h2>
+
+
+                    <!-- 설명 -->
+                    <p class="product-desc"
+                       th:text="${item.productDesc}">
+                        상품 설명
+                    </p>
+
+
+                    <!-- 금리 -->
+                    <div class="rate-box">
+
+                        <p class="rate-label">
+                            최고 금리
+                        </p>
+
+                        <h3 class="rate-value">
+                            연
+                            <span th:text="${item.maxRate}">
+                                4.5
+                            </span>
+                            %
+                        </h3>
+
+                    </div>
+
+
+                    <!-- 가입 정보 -->
+                    <div class="product-info">
+
+                        <div class="info-row">
+
+                            <span class="info-title">
+                                가입기간
+                            </span>
+
+                            <span class="info-value">
+                                <span th:text="${item.minPeriodMonth}"></span>
+                                ~
+                                <span th:text="${item.maxPeriodMonth}"></span>
+                                개월
+                            </span>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span class="info-title">
+                                가입금액
+                            </span>
+
+                            <span class="info-value">
+
+                                <span th:text="${#numbers.formatInteger(item.minAmount, 3, 'COMMA')}">
+                                    10000
+                                </span>
+
+                                원 ~
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 버튼 -->
+                    <a class="detail-btn"
+                       th:href="@{/product/{id}(id=${item.productId})}">
+
+                        자세히 보기
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 페이징 -->
+    <section class="paging-section">
+
+        <div class="paging-wrap">
+
+            <!-- 이전 -->
+            <a th:if="${products.page > 1}"
+               th:href="@{${#httpServletRequest.requestURI}(page=${products.page - 1})}">
+
+                이전
+
+            </a>
+
+
+            <!-- 페이지 번호 -->
+            <th:block th:each="i : ${#numbers.sequence(1, products.totalPage)}">
+
+                <a th:href="@{${#httpServletRequest.requestURI}(page=${i})}"
+                   th:text="${i}"
+                   th:classappend="${i == products.page} ? 'active'">
+
+                    1
+
+                </a>
+
+            </th:block>
+
+
+            <!-- 다음 -->
+            <a th:if="${products.page < products.totalPage}"
+               th:href="@{${#httpServletRequest.requestURI}(page=${products.page + 1})}">
+
+                다음
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- 푸터 -->
+    <div th:replace="~{footer :: footer}"></div>
+
+</body>
+
+</html>
