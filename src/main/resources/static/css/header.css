@@ -117,6 +117,10 @@ body {
 
     list-style: none;
 }
+.nav-menu a {
+	 text-decoration: none;
+	 color: #111;
+}
 
 .nav-menu li {
 
@@ -133,6 +137,10 @@ body {
 }
 
 .nav-menu li:hover,
+.active-menu {
+    color: #e60012;
+}
+.nav-menu a:hover,
 .active-menu {
     color: #e60012;
 }
