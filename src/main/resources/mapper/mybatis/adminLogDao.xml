@@ -15,8 +15,9 @@
          request_body,
          response_code
         ) values (
-        API_LOG_SEQ.NEXTVAL,
+        SEQ_API_LOGS.NEXTVAL,
         #{url},
+        #{method},
         #{elapsed_ms},
         #{request_body},
         #{response_code}
