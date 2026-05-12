@@ -13,4 +13,10 @@ public class AdminActionLogDto {
     String action;
     String target;
     String created_at;
+
+    public AdminActionLogDto(String action, String target) {
+        this.action = action;
+        this.target = target;
+    }
 }
+
