@@ -141,6 +141,10 @@ body {
 .active-menu {
     color: #e60012;
 }
+.nav-menu a:hover,
+.active-menu {
+    color: #e60012;
+}
 
 /* active */
 .nav-menu li.active-menu > a {
