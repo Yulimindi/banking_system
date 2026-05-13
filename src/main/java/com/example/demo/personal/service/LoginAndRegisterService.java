@@ -45,6 +45,7 @@ public class LoginAndRegisterService {
             account.setLimit_one_time(100);
             account.setLimit_daily(300);
             dao.insertAccount(account);
+            dao.insertFxAccount(account);
             return 1;
         }
         return 0;

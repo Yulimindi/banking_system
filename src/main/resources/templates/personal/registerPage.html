@@ -275,14 +275,14 @@
 
           <!-- 보안 -->
           <div class="divider"></div>
-          <div class="sec-title">보안</div>
+          <div class="sec-title">계좌</div>
 
           <div class="field" style="max-width:260px;">
             <label for="account_pw">계좌 비밀번호</label>
             <input type="text" name="account_pw" id="account_pw" placeholder="숫자 4~6자리" required>
             <p class="hint info" id="account_pw_text"></p>
           </div>
-
+			
           <div class="submit-wrap">
             <button type="submit" class="submit-btn">가입하기</button>
             <p class="submit-notice">입력하신 정보는 안전하게 보호됩니다.</p>
@@ -449,7 +449,33 @@
 				emailText.style.color="green";
 			}
 		}
-
+		document.querySelector("#account_pw").addEventListener("blur", check_account_pw);
+		
+		function check_account_pw(){
+			const account_pw_text = document.querySelector("#account_pw_text");
+			const account_pw = document.querySelector("#account_pw").value;
+			
+			if(isNaN(account_pw) || account_pw == ''){
+				account_pw_text.innerText = '숫자만 입력해주세요';
+				return;
+			}
+			let isInvalid = false;
+			for (let i = 0; i < account_pw.length - 2; i++) {
+			    
+			    if (account_pw[i] === account_pw[i + 1] && account_pw[i + 1] === account_pw[i + 2]) {
+			        isInvalid = true; 
+			        break;
+			    }
+			}
+			
+			if(isInvalid || account_pw.length != 4){
+				account_pw_text.innerText = '사용할수 없는 비밀번호입니다.'
+					account_pw_text.style.color='red';
+			}else if(!isInvalid && account_pw.length == 4){
+				account_pw_text.innerText = "사용가능한 비밀번호입니다."
+				account_pw_text.style.color='green';
+			}
+		}
 	</script>
 
   <div th:replace="~{footer :: footer}"></div>

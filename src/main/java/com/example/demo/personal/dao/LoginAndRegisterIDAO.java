@@ -13,6 +13,8 @@ public interface LoginAndRegisterIDAO {
 	// 회원가입
 	int insertAccount(Accounts_personalDTO ac);
 	// 회원가입
+	int insertFxAccount(Accounts_personalDTO ac);
+	// 회원가입
 	int checkAccount(@Param("account_no") String account_no);
 	// 아이디 중복확인
 	int checkId(@Param("Login_id") String Login_id);
