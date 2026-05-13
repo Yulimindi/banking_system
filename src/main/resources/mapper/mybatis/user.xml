@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo.personal.dao.LoginAndRegisterIDAO">
-
+	<!-- 회원정보 -->
     <insert id="insertUser">
         INSERT INTO users (
             user_id, login_id, password, name, phone, birth, email, status, gender,
@@ -25,7 +25,7 @@
             SYSDATE
         )
     </insert>
-
+	<!-- 국내 계좌정보 -->
     <insert id="insertAccount">
        INSERT INTO accounts_personal (
            account_id, account_pw, bank_name, account_no, user_id, balance, currency, account_status,
@@ -38,6 +38,22 @@
            user_id_seq.CURRVAL,
            #{balance},
            #{currency},
+           #{account_status},
+           #{limit_one_time},
+           #{limit_daily}
+       )
+    </insert>
+    <!-- 해외 계좌정보 -->
+    <insert id="insertFxAccount">
+       INSERT INTO foreign_accounts_personal (
+           account_id, account_pw, bank_name, account_no, user_id,  account_status,
+           limit_one_time, limit_daily
+       ) VALUES (
+           account_id_seq.NEXTVAL,
+           #{account_pw},
+           #{bank_name},
+           #{account_no},
+           user_id_seq.CURRVAL,
            #{account_status},
            #{limit_one_time},
            #{limit_daily}
