@@ -910,3 +910,74 @@ a { text-decoration: none; color: inherit; }
     position: relative;
     z-index: 3;
 }
+/* =========================
+   상품 약관
+========================= */
+
+.document-list {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.document-item {
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 22px;
+
+    background: #fff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    text-decoration: none;
+
+    color: #111827;
+
+    transition: all 0.2s ease;
+}
+
+.document-item:hover {
+
+    border-color: #d1d5db;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.document-item span {
+
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.arrow {
+
+    font-size: 22px;
+
+    color: #9ca3af;
+}
+.clickable-best-product {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clickable-best-product:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+}
+
+.clickable-compare-row {
+    cursor: pointer;
+}
+
+.clickable-compare-row:hover td {
+    background: #fff5f5;
+}

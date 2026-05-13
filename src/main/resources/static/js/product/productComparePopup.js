@@ -169,7 +169,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const best = finalScored[0];
 
         resultBox.innerHTML = `
-            <div class="best-product-box">
+			<div class="best-product-box clickable-best-product"
+			     onclick="location.href='/product/${best.id}'">
 
                 <p class="best-label">
                     고객님께 가장 잘 맞는 상품
@@ -207,7 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     ${finalScored.map(product => `
 
-                        <tr class="${product.id === best.id ? "best-row" : ""}">
+						<tr class="${product.id === best.id ? "best-row" : ""} clickable-compare-row"
+						    onclick="location.href='/product/${product.id}'">
 
                             <td>
                                 ${product.id === best.id ? "🥇 " : ""}
