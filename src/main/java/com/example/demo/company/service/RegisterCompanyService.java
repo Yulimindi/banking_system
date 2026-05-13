@@ -26,7 +26,7 @@ public class RegisterCompanyService {
 		return false;
 	}
 	
-	// 사업자 번호 있으면 회원등록
+	// 기업 회원등록
 	public void insertCompanyUser(CompanyUserDTO dto) {
 		if (dto != null) {
             String encryptedPassword = userService.passwordEncryption(dto.getPassword());
@@ -39,4 +39,14 @@ public class RegisterCompanyService {
          
         }
 	}
+	
+	// 아이디 중복확인
+		public boolean checkId(String id) {
+			System.out.println("서비스 받은 id" + id);
+			System.out.println();
+			if(companyDAO.checkId(id) == 1) {
+				return true;
+			}
+			return false;
+		}
 }

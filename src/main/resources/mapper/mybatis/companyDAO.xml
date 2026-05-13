@@ -14,6 +14,8 @@
 			
 		)
 	</insert>
-	
+	<select id="checkId" resultType="int">
+        SELECT COUNT(*) FROM company_users WHERE Login_id = #{Login_id}
+    </select>
 	
 </mapper>

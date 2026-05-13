@@ -65,7 +65,7 @@ public class LoginAndRegisterService {
 	}
 	// 아이디 중복확인
 	public boolean checkId(String id) {
-		System.out.println("서비스 받은 id" + id);
+		System.out.println("company 서비스 받은 id" + id);
 		System.out.println();
 		if(dao.checkId(id) == 1) {
 			return true;

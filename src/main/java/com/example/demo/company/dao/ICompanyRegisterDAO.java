@@ -13,5 +13,6 @@ public interface ICompanyRegisterDAO {
 	int selectBno(@Param("business_no") String bno);
 
 	int insertCompanyUser(CompanyUserDTO dto);
+	int checkId(@Param("Login_id") String Login_id);
 
 }

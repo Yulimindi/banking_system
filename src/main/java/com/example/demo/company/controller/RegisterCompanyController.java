@@ -2,6 +2,7 @@ package com.example.demo.company.controller;
 
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,5 +37,20 @@ public class RegisterCompanyController {
 	@PostMapping("/companyrPro")
 	public void 기업직원회원가입(CompanyUserDTO dto) {
 		System.out.println("회사개인 정보 : "+dto.toString());
+	}
+	
+	@ResponseBody
+	@PostMapping("/companyCheckId")
+	public ResponseEntity<Map<String, String>> 아이디중복확인(@RequestBody Map<String, String> Login_id) {
+		System.out.println(Login_id.get("login_id"));
+		
+		String id =Login_id.get("login_id");
+		System.out.println("company 컨트롤러 id  : "+id);
+		
+		if(service.checkId(Login_id.get("login_id")) == true){
+			return ResponseEntity.ok(Map.of("result","중복된아이디"));
+		}
+			
+		return ResponseEntity.ok(Map.of("result","사용가능한아이디"));
 	}
 }
