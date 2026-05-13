@@ -28,6 +28,7 @@ public class AdminController {
 	@GetMapping("/memberList")
 	public String memberListPage(Model m) {
 		m.addAttribute("userList", as.getUserList());
+		m.addAttribute("companyList", as.getCompanyUserList());
 		return "admin/memberList";
 	}
 

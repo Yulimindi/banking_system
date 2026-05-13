@@ -14,4 +14,5 @@ public class ApiLogDto {
 	private Long elapsed_ms;
 	private String request_body;
 	private Long response_code;
+	private String ip_address;
 }

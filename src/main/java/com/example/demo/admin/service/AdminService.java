@@ -54,6 +54,10 @@ public class AdminService {
 		return listDao.getUsers();
 	}
 	
+	public List<CompanyUserDTO> getCompanyUserList() {
+		return listDao.getCompanyUsers();
+	}
+	
 	public void updateAdmin(AdminDto dto) {
 		listDao.updateAdmin(dto.getAdmin_id(), dto.getPassword(), dto.getDepartment(), dto.getAdmin_pw(), dto.getName(), dto.getAdmin_role());
 	}
