@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Admin Main</title>
+	<meta charset="UTF-8">
+	<title>Admin Main</title>
 </head>
 <body>
-	<h1>관리자 메인 대시보드</h1>
-	<hr>
-	
+<h1>관리자 메인 대시보드</h1>
+<hr>
+
+<!-- 세션에 loginId가 있을 때만 표시 -->
+<div th:if="${session.loginId != null}">
+	<p>
+		<strong th:text="${session.name}"></strong>
+		(<span th:text="${session.loginId}"></span>)님 환영합니다!
+	</p>
+</div>
+
+<!-- 세션이 없을 때는 아무것도 안 나옴 -->
+
+<a th:href="@{/admin/adminMain}">홈</a><br>
+<a th:href="@{/adminJoin}">회원가입</a><br>
+<a th:href="@{/adminLogin}">로그인</a><br>
+<a th:href="@{/adminMyPage}">관리자 마이페이지</a><br>
+
 </body>
 </html>
