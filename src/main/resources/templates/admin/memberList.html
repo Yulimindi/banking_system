@@ -152,18 +152,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="company : ${companylist}">
-                            <td th:text="${company.company_id}" style="font-weight: 700; color: #7B1FA2;"></td>
-                            <td th:text="${company.business_no}"></td>
+                        <tr th:each="company : ${companyList}">
+                            <td th:text="${company.company_user_id}" style="font-weight: 700; color: #7B1FA2;"></td>
+                            <td th:text="${company.company_id}"></td>
                             <td th:text="${company.login_id}"></td>
-                            <td th:text="${company.name}" style="font-weight: 600;"></td>
+                            <td th:text="${company.password}" style="font-weight: 600;"></td>
+                            <td th:text="${company.name}"></td>
                             <td th:text="${company.phone}"></td>
                             <td th:text="${company.birth}"></td>
                             <td th:text="${company.email}"></td>
                             <td><span class="badge badge-company" th:text="${company.status}"></span></td>
+                            <td th:text="${company.gender}"></td>
                             <td th:text="${company.e_name}"></td>
+                            <td th:text="${company.created_at}"></td>
                             <td style="text-align: center;">
-                                <!-- 기업 고객 수정 페이지 경로는 유림님의 컨트롤러 설정에 맞춰 확인하세요 -->
                                 <a class="btn-update" th:href="@{/admin/updateCompanyPage(company_id=${company.company_id})}">
                                     <i class="fa-solid fa-pen-to-square"></i> 관리
                                 </a>
