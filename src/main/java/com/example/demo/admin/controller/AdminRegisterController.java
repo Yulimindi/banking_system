@@ -4,8 +4,6 @@ import com.example.demo.admin.dao.IAdminActionDao;
 import com.example.demo.admin.dao.IAdminDao;
 import com.example.demo.admin.dto.AdminActionLogDto;
 import com.example.demo.admin.dto.AdminDto;
-import com.example.demo.admin.interceptor.JwtUtil;
-import com.example.demo.admin.interceptor.TokenResponse;
 import com.example.demo.admin.service.AdminMergeService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -80,7 +78,7 @@ public class AdminRegisterController {
 
 
 @PostMapping("/admin/login")
-public String login(@ModelAttribute AdminDto dto,
+public String login(@RequestParam("login")
                     HttpSession session) {
 
     AdminDto admin = serv.login(dto);
