@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.example.demo.company.dao.ICompanyRegisterDAO">
+
+	<!-- 사업자 번호 조희 -->
+	<select id="selectBno" resultType="int">
+		SELECT count(*) from companies
+	</select>    
+	<insert id="">
+		INSERT INTO company_users (company_user_id, company_Id, login_id, password, name, phone,
+		email, status, gender, e_name, created_at) VALUES(
+			
+		)
+	</insert>
+	
+	
+</mapper>
