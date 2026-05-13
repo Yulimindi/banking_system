@@ -37,10 +37,12 @@
             parameterType="com.example.demo.admin.dto.AdminDto"
             resultType="com.example.demo.admin.dto.AdminDto">
 
-        SELECT * FROM ADMIN_USERS
-        WHERE login_id = #{login_id}
+        SELECT *
+        FROM ADMIN_USERS
+        WHERE admin_id = #{admin_id}
 
     </select>
+
 
     <!-- 내 정보 조회 -->
     <select id="selectMyPage"
@@ -49,7 +51,7 @@
 
         SELECT *
         FROM ADMIN_USERS
-        WHERE admin_id = #{admin_id}
+        WHERE login_id = #{login_id}
 
     </select>
 
