@@ -36,8 +36,12 @@ public class RegisterCompanyController {
 		return 0;
 	}
 	@PostMapping("/companyrPro")
-	public void 기업직원회원가입(CompanyUserDTO dto) {
+	public String 기업직원회원가입(CompanyUserDTO dto) {
 		System.out.println("회사개인 정보 : "+dto.toString());
+		if(service.insertCompanyUser(dto).equals("성공")) {
+			return "redirect:/index";
+		}
+		return "redirect:/company/companyRegister";
 	}
 	
 	@ResponseBody

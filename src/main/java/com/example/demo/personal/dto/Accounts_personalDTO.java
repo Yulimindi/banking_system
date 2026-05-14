@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Accounts_personalDTO {
 
-	private int account_pw;
+	private String account_pw;
 	private String bank_name;
 	private String account_no;
 	private String user_id;
