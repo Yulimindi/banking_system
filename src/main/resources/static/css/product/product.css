@@ -981,3 +981,52 @@ a { text-decoration: none; color: inherit; }
 .clickable-compare-row:hover td {
     background: #fff5f5;
 }
+.interest-calculator-box {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.calculator-input-group {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.calculator-input-group input {
+
+    height: 48px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    padding: 0 14px;
+
+    font-size: 15px;
+}
+
+.interest-calc-btn {
+
+    height: 48px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e31b23;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.detail-calc-result {
+
+    margin-top: 10px;
+}
