@@ -231,7 +231,65 @@
         </div>
 
     </section>
+	<!-- 만기 이자 계산기 -->
 
+	<section class="detail-section detail-text-section">
+	
+	    <h2>만기 이자 계산기</h2>
+	
+	    <div class="interest-calculator-box">
+	
+	        <div class="calculator-input-group">
+	
+	            <label>예치 금액</label>
+	
+	            <input type="number"
+	                   id="detailAmount"
+	                   placeholder="예: 1000000">
+	
+	        </div>
+	
+	        <div class="calculator-input-group">
+	
+	            <label>가입 기간 (개월)</label>
+	
+	            <input type="number"
+	                   id="detailPeriod"
+	                   th:value="${product.minPeriodMonth}">
+	
+	        </div>
+	
+	        <div class="calculator-input-group">
+	
+	            <label>적용 금리 (%)</label>
+	
+	            <input type="number"
+	                   id="detailRate"
+	                   step="0.01"
+	                   th:value="${product.rates[0].maxRate}">
+	
+	        </div>
+	
+	        <button type="button"
+	                id="detailCalcBtn"
+	                class="interest-calc-btn">
+	
+	            계산하기
+	
+	        </button>
+	
+	        <div id="detailCalcResult"
+	             class="detail-calc-result">
+	
+	        </div>
+	
+	        <p class="interest-notice">
+	            ※ 단리 및 일반과세 15.4% 기준 예상 금액입니다.
+	        </p>
+	
+	    </div>
+	
+	</section>
     <!-- 상품 기본 안내 -->
 
     <section class="detail-section detail-text-section">
@@ -329,6 +387,6 @@
 </div>
 
 <div th:replace="~{footer :: footer}"></div>
-
+<script th:src="@{/js/product/productInterestCalculator.js}"></script>
 </body>
 </html>
