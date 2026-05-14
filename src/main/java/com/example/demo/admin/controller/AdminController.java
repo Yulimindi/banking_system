@@ -136,4 +136,11 @@ public class AdminController {
 		return "/admin/exchangeList";
 	}
 	
+	// ========== 계좌 리스트 관련 ==========
+	@GetMapping("/adminAccountPage")
+	public String adminAccountPage(Model m) {
+		
+		return "/admin/adminAccount";
+	}
+	
 }
