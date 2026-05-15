@@ -60,22 +60,34 @@
 	</select>
 	
 	<select id="getSearchPersonalLog" resultType="com.example.demo.admin.dto.SearchLogDto">
-		select * from search_log where role_type = 'ROLE_PERSONAL'
+		select * from search_log where role_type = 'ROLE_PERSONAL' order by search_volume desc
 	</select>
 	
 	<select id="getSuggestPersonalSearch" resultType="com.example.demo.admin.dto.SuggestedSearchDto">
-		select * from suggested_search where role_type = 'ROLE_PERSONAL'
+		select * from suggested_search where role_type = 'ROLE_PERSONAL' order by search_volume desc
 	</select>
 	
 	<select id="getSearchCompanyLog" resultType="com.example.demo.admin.dto.SearchLogDto">
-		select * from search_log where role_type = 'ROLE_COMPANY'
+		select * from search_log where role_type = 'ROLE_COMPANY' order by search_volume desc
 	</select>
 	
 	<select id="getSuggestCompanySearch" resultType="com.example.demo.admin.dto.SuggestedSearchDto">
-		select * from suggested_search where role_type = 'ROLE_COMPANY'
+		select * from suggested_search where role_type = 'ROLE_COMPANY' order by search_volume desc
+	</select>
+	
+	<select id="getKeywordBanList" resultType="com.example.demo.admin.dto.KeywordBanDto">
+		select * from keyword_ban
 	</select>
 	
 	<insert id="keywordBan">
 		insert into keyword_ban values(SEQ_KEYWORD_BAN_SEARCH.nextval, #{keyword}, SYSDATE, #{adm_no})
 	</insert>
+	
+	<select id="getKeyword" resultType="com.example.demo.admin.dto.KeywordBanDto">
+		select * from keyword_ban where keyword = #{keyword}
+	</select>
+	
+	<delete id="deleteBanKeyword">
+		delete from keyword_ban where keyword = #{keyword}
+	</delete>
 </mapper>

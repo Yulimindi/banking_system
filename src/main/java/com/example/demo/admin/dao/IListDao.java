@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.example.demo.admin.dto.AdminDto;
 import com.example.demo.admin.dto.ApprovalDto;
 import com.example.demo.admin.dto.CompaniesDto;
+import com.example.demo.admin.dto.KeywordBanDto;
 import com.example.demo.admin.dto.ProductApprovalDto;
 import com.example.demo.admin.dto.SearchLogDto;
 import com.example.demo.admin.dto.SuggestedSearchDto;
@@ -42,5 +43,9 @@ public interface IListDao {
 	List<SuggestedSearchDto> getSuggestPersonalSearch();
 	List<SearchLogDto> getSearchCompanyLog();
 	List<SuggestedSearchDto> getSuggestCompanySearch();
-	int keywordBan(@Param("keyword") String keyword, @Param("adm_no") Long adm_no); 
+	List<KeywordBanDto> getKeywordBanList();
+	int keywordBan(@Param("keyword") String keyword, @Param("adm_no") Long adm_no);
+	KeywordBanDto getKeyword(@Param("keyword") String keyword);
+	int deleteBanKeyword(@Param("keyword") String keyword);
+	int setSuggestKeyword(@Param("keyword") String keyword);
 }

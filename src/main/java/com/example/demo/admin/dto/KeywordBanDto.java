@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class KeywordBan {
+public class KeywordBanDto {
 	private Long key_no;
 	private String keyword;
 	private String ban_dt;

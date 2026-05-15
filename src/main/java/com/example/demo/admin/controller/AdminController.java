@@ -163,12 +163,35 @@ public class AdminController {
 		m.addAttribute("suggest_per", as.getSuggestPersonal());
 		m.addAttribute("search_com", as.getSearchCompany());
 		m.addAttribute("suggest_com", as.getSuggestCompany());
+		m.addAttribute("ban", as.getKeywordBanList());
 		return "/admin/searchManagement";
 	}
 	
 	@GetMapping("/keywordBan")
 	public String keywordBan(@RequestParam("keyword") String keyword) {
-		as.keywordBan(keyword, (long) 1); // adm_no 으로 세션에서 받아서 바꿔야함
+		if(as.checkKeywordExist(keyword)) {
+			as.keywordBan(keyword, (long) 1); // adm_no 으로 세션에서 받아서 바꿔야함
+			return "redirect:/admin/searchManagementPage";
+		} else {
+			return "redirect:/admin/searchManagementPage";
+		}
+	}
+	
+	// 추천 검색어 리프레쉬 로직 짜야함
+	@GetMapping("/updateSuggestKeyword")
+	public String updateSuggestKeyword() {
+		return "";
+	}
+	
+	@GetMapping("/deleteBanKeyword")
+	public String deleteBanKeyword(@RequestParam("keyword") String keyword) {
+		as.deleteBanKeyword(keyword);
+		return "redirect:/admin/searchManagementPage";
+	}
+	
+	@GetMapping("/setSuggestKeyword")
+	public String setSuggestKeyword(@RequestParam("keyword") String keyword) {
+		as.setSuggestKeyword(keyword);
 		return "redirect:/admin/searchManagementPage";
 	}
 	

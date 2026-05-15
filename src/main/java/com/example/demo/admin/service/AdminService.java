@@ -14,6 +14,7 @@ import com.example.demo.admin.dto.ApiLogDto;
 import com.example.demo.admin.dto.ApprovalDto;
 import com.example.demo.admin.dto.CompaniesDto;
 import com.example.demo.admin.dto.ExchangeRequestDto;
+import com.example.demo.admin.dto.KeywordBanDto;
 import com.example.demo.admin.dto.ProductApprovalDto;
 import com.example.demo.admin.dto.ProductDto;
 import com.example.demo.admin.dto.SearchLogDto;
@@ -135,10 +136,30 @@ public class AdminService {
 		return listDao.getSuggestCompanySearch();
 	}
 	
+	public List<KeywordBanDto> getKeywordBanList() {
+		return listDao.getKeywordBanList();
+	}
+	
 	public void keywordBan(String keyword, Long adm_no) {
 		listDao.keywordBan(keyword, adm_no);
 	}
 	
+	public boolean checkKeywordExist(String keyword) {
+		
+		if(listDao.getKeyword(keyword) != null) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public void deleteBanKeyword(String keyword) {
+		listDao.deleteBanKeyword(keyword);
+	}
+	
+	public void setSuggestKeyword(String keyword) {
+		listDao.setSuggestKeyword(keyword);
+	}
 	
 }
 
