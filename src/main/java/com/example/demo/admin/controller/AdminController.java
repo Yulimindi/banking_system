@@ -97,7 +97,7 @@ public class AdminController {
 	
 	@GetMapping("/approvalDetailPage")
 	public String approvalDetailPage(Model m, @RequestParam("product_id") Long product_id) {
-		m.addAttribute("approvalList", as.getProduct(product_id));
+		m.addAttribute("approvalList", as.getApproval(product_id));
 		return "admin/approvalDetailPage";
 	}
 	
@@ -134,6 +134,13 @@ public class AdminController {
 	public String exchangeListPage(Model m) {
 		m.addAttribute("exchangeList", as.exchangeList());
 		return "/admin/exchangeList";
+	}
+	
+	// ========== 계좌 리스트 관련 ==========
+	@GetMapping("/adminAccountPage")
+	public String adminAccountPage(Model m) {
+		
+		return "/admin/adminAccount";
 	}
 	
 }
