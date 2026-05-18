@@ -1,7 +1,12 @@
 package com.example.demo.admin.config;
 
+import java.time.Duration;
+
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 
@@ -15,6 +20,17 @@ import io.lettuce.core.codec.StringCodec;
 
 @Configuration
 public class Bucket4jRedisConfig {
+	
+	@Bean
+    public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
+        // 기본 캐시 설정 (유효기간 10분 설정 예시, 필요시 변경 가능)
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofMinutes(10)); 
+
+        return RedisCacheManager.builder(connectionFactory)
+                .cacheDefaults(config)
+                .build();
+    }
 	
 	@Bean
 	public ProxyManager<String> lettuceProxyManager(RedisConnectionFactory connectionFactory) {
