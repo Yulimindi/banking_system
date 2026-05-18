@@ -90,7 +90,7 @@
 
         // 로그인 성공
         if(admin != null) {
-
+            session.setAttribute("admin", admin);
             session.setAttribute("adminId", admin.getAdmin_id());
             session.setAttribute("loginId", admin.getLogin_id());
             session.setAttribute("name", admin.getName());

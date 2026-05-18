@@ -33,8 +33,8 @@
                    #{product_type},
                    #{min_period_month},
                    #{max_period_month},
-                   #{min_amount},
-                   #{max_amount},
+                   #{min_amount, jdbcType=NUMERIC},
+                   #{max_amount, jdbcType=NUMERIC},
                    #{target_large},
                    #{target_detail},
                    #{product_desc},
@@ -43,27 +43,59 @@
                    SYSDATE,
                    #{created_by},
                    #{rate_category},
-                   'SAVE'
+                   #{approve_status}
                )
 
     </insert>
+
+    <insert id="insertProPdf">
+
+        INSERT INTO PRODUCT_PDFS (
+            pdf_no,
+            prod_no,
+            basic_terms_path,
+            cat_terms_path,
+            spec_terms_path,
+            prod_guide_path,
+            reg_dt
+        ) VALUES (
+                     SEQ_PRODUCT_PDFS.NEXTVAL,
+                     #{product_id},
+                     #{basic_terms_path, jdbcType=VARCHAR},
+                     #{category_terms_path, jdbcType=VARCHAR},
+                     #{special_terms_path, jdbcType=VARCHAR},
+                     #{product_guide_path, jdbcType=VARCHAR},
+                     SYSDATE
+                 )
+
+    </insert>
+
+
 
 
     <!-- 상품 신청 등록 -->
     <insert id="insertProRequest">
 
         INSERT INTO PRODUCT_REQUESTS (
-            request_id,
-            product_id,
-            requester_id,
-            request_status,
-            request_type,
-            requeste_date
+            req_no,
+            prod_no,
+            req_usr_no,
+            req_stat_cd,
+            req_type,
+            req_dt
         )
         VALUES (
                    SEQ_PRODUCT_REQUESTS.NEXTVAL,
-                   #{requester_id},
                    #{product_id},
+
+                   (
+                       SELECT A.adm_no
+                       FROM ADMIN_USERS A
+                                JOIN PRODUCTS P
+                                     ON A.name = P.reg_by
+                       WHERE P.prod_no = #{product_id}
+                   ),
+
                    'WAITING',
                    'CREATE',
                    SYSDATE
@@ -72,24 +104,48 @@
     </insert>
 
 
+
     <!-- 상품 목록 조회 -->
-    <select id="listPro"
-            resultType="com.example.demo.admin.dto.ProductDto">
+    <select id="listPro" resultType="com.example.demo.admin.dto.ProductDto">
 
         SELECT
-            prod_no                AS product_id,
-            prod_nm                AS product_name,
-            prod_type              AS product_type,
-            min_amt                AS min_amount,
-            max_amt                AS max_amount,
-            apv_stat_cd            AS approve_status,
-            reg_dt                 AS create_date,
-            reg_by                 AS created_by,
-            active                 AS ia_active
+            prod_no       AS product_id,
+            prod_nm       AS product_name,
+            active,
+            prod_type     AS product_type,
+            min_amt       AS min_amount,
+            max_amt       AS max_amount,
+            min_prd_mon   AS min_period_month,
+            max_prd_mon   AS max_period_month,
+            apv_stat_cd   AS approve_status,
+            reg_dt        AS create_date,
+            reg_by        AS created_by,
+            active        AS is_active,
+            tgt_lrg     AS target_large,
+            tgt_dtl     AS target_detail,
+            rate_cat    AS rate_category
 
         FROM PRODUCTS
-
         ORDER BY prod_no DESC
+        OFFSET #{offset} ROWS
+            FETCH NEXT #{pageSize} ROWS ONLY
+
+    </select>
+
+    <select id="getTotalCount"
+            resultType="int">
+
+        SELECT COUNT(*)
+        FROM products
+
+    </select>
+
+    <!-- 가장 최근 상품번호 조회 -->
+    <select id="selectCurrentProductNo"
+            resultType="long">
+
+        SELECT MAX(prod_no)
+        FROM PRODUCTS
 
     </select>
 
@@ -101,7 +157,7 @@
 
         SELECT
             P.prod_no                      AS product_id,
-            P.active                       AS ia_active,
+            P.active                       AS active,
             P.prod_nm                      AS product_name,
             P.prod_type                    AS product_type,
 
@@ -133,14 +189,14 @@
             P.rate_cat                     AS rate_category,
 
             PDF.basic_terms_path           AS basic_terms_path,
-            PDF.category_terms_path        AS category_terms_path,
-            PDF.special_terms_path         AS special_terms_path,
-            PDF.product_guide_path         AS product_guide_path
+            PDF.cat_terms_path        AS category_terms_path,
+            PDF.spec_terms_path         AS special_terms_path,
+            PDF.prod_guide_path         AS product_guide_path
 
         FROM PRODUCTS P
 
                  LEFT JOIN PRODUCT_PDFS PDF
-                           ON P.prod_no = PDF.product_id
+                           ON P.prod_no = PDF.prod_no
 
         WHERE P.prod_no = #{product_id}
 
@@ -159,7 +215,7 @@
             apv_stat_cd         AS approve_status,
             reg_dt              AS create_date,
             reg_by              AS created_by,
-            active              AS ia_active
+            active              AS active
 
         FROM PRODUCTS
 
@@ -336,22 +392,22 @@
             </if>
 
             <if test="category_terms_path != null">
-                category_terms_path = #{category_terms_path},
+                cat_terms_path = #{category_terms_path},
             </if>
 
             <if test="special_terms_path != null">
-                special_terms_path = #{special_terms_path},
+                spec_terms_path = #{special_terms_path},
             </if>
 
             <if test="product_guide_path != null">
-                product_guide_path = #{product_guide_path},
+                prod_guide_path = #{product_guide_path},
             </if>
 
-            update_date = SYSDATE
+            upd_dt = SYSDATE
 
         </set>
 
-        WHERE product_no = #{product_no}
+        WHERE prod_no = #{product_id}
 
     </update>
 
@@ -361,7 +417,7 @@
             parameterType="long">
 
         DELETE FROM PRODUCT_PDFS
-        WHERE product_no = #{product_no}
+        WHERE prod_no = #{product_id}
 
     </delete>
 
@@ -371,7 +427,7 @@
             parameterType="long">
 
         DELETE FROM PRODUCT_REQUESTS
-        WHERE product_no = #{product_no}
+        WHERE prod_no = #{product_id}
 
     </delete>
 
@@ -381,7 +437,7 @@
             parameterType="long">
 
         DELETE FROM PRODUCTS
-        WHERE product_no = #{product_no}
+        WHERE prod_no = #{product_id}
 
     </delete>
 
