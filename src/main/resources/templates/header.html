@@ -28,7 +28,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
       <!-- 로고 -->
       <div class="header-logo">
-        <a th:href="@{/index}"><img th:src="@{/images/BNKlogo.png}" alt="BNK 로고"></a>
+        <a th:href="@{/}"><img th:src="@{/images/BNKlogo.png}" alt="BNK 로고"></a>
       </div>
 
       <!-- 개인 / 기업 -->
@@ -37,7 +37,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <!-- 메인 -->
         <th:block th:if="${mode == 'main'}">
 
-          <a th:href="@{/personal/personalMain}">
+          <a th:href="@{/}">
             개인뱅킹
           </a>
 
@@ -50,7 +50,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <!-- 개인 -->
         <th:block th:if="${mode == 'personal'}">
 
-          <a th:href="@{/personal/personalMain}"
+          <a th:href="@{/}"
              class="active-bank">
             개인뱅킹
           </a>
