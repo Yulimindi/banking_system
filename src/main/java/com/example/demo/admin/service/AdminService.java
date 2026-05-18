@@ -73,7 +73,7 @@ public class AdminService {
 		listDao.updateCompanyUser(dto);
 	}
 	
-	public ProductApprovalDto getApproval(Long product_id) {
+	public List<ProductApprovalDto> getApproval(Long product_id) {
 		return listDao.getApproval(product_id);
 	}
 	
@@ -104,20 +104,20 @@ public class AdminService {
 		return listDao.getCompanies();
 	}
 	
-	public List<Accounts_personalDTO> getPersonalDomesticAccount(Long user_id) {
-		return listDao.getPersonalDomesticAccount(user_id);
-	}
-	
-	public List<Foreign_accounts_personal> getPersonalForeignAccount(Long user_id) {
-		return listDao.getPersonalForeignAccount(user_id);
-	}
-	
 	public List<AccountsCompanyDTO> getCompanyDomesticAccount(Long company_id) {
 		return listDao.getCompanyDomesticAccount(company_id);
 	}
 	
 	public List<ForeignAccountsCompanyDTO> getCompanyForeignAccount(Long company_id) {
 		return listDao.getCompanyForeignAccount(company_id);
+	}
+	
+	public List<Accounts_personalDTO> getPersonalDomesticAccount(Long user_id) {
+		return listDao.getPersonalDomesticAccount(user_id);
+	}
+	
+	public List<Foreign_accounts_personal> getPersonalForeignAccount(Long user_id) {
+		return listDao.getPersonalForeignAccount(user_id);
 	}
 	
 	public List<SearchLogDto> getSearchPersonal() {
@@ -146,7 +146,7 @@ public class AdminService {
 	
 	public boolean checkKeywordExist(String keyword) {
 		
-		if(listDao.getKeyword(keyword) != null) {
+		if(listDao.getKeywordBan(keyword) != null) {
 			return false;
 		} else {
 			return true;
@@ -157,8 +157,45 @@ public class AdminService {
 		listDao.deleteBanKeyword(keyword);
 	}
 	
-	public void setSuggestKeyword(String keyword) {
-		listDao.setSuggestKeyword(keyword);
+	public void setSuggestKeyword(String keyword, String role, Long search_volume) {
+		listDao.setSuggestKeyword(keyword, role, search_volume);
+	}
+	
+	public SearchLogDto getCompanySearchLog(String keyword) {
+		return listDao.getKeyword(keyword);
+	}
+	
+	public SearchLogDto getPersonalSearchLog(String keyword) {
+		return listDao.getKeyword(keyword);
+	}
+	
+	public SuggestedSearchDto getCompanySuggestKeyword(String keyword) {
+		return listDao.getCompanySuggestKeyword(keyword);
+	}
+	
+	public SuggestedSearchDto getPersonalSuggestKeyword(String keyword) {
+		return listDao.getPersonalSuggestKeyword(keyword);
+	}
+	
+	public int getCompanySuggestKeyword() {
+		return listDao.getCompanySuggestKeywords().size();
+	}
+	
+	public int getPersonalSuggestKeyword() {
+		return listDao.getPersonalSuggestKeywords().size();
+	}
+	
+	public void deletePersonalSuggestKeyword() {
+		listDao.deletePersonalSuggestKeyword();
+	}
+	
+	public void deleteCompanySuggestKeyword() {
+		listDao.deleteCompanySuggestKeyword();
+	}
+	
+	public void updateSuggestKeyword() {
+		listDao.truncateSuggestSearch();
+		listDao.updateSuggestKeyword();
 	}
 	
 }
