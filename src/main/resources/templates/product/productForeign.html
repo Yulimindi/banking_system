@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>외환 상품몰</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/product/product.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+
+<body>
+
+<div th:replace="~{header :: header}"></div>
+
+<div class="product-layout">
+
+    <aside class="product-sidebar">
+        <div class="sidebar-profile">
+            <div class="profile-bank">BNK 부산은행 외환</div>
+			<div class="profile-name">외환 고객님 반갑습니다</div>
+            <div class="profile-date">최근 접속일 2026.05.06</div>
+        </div>
+
+        <button class="logout-btn">LOGOUT</button>
+
+        <nav class="sidebar-category">
+		
+		    <a class="active" th:href="@{/product/foreign}">외환</a>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>외화예금</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-sub-menu active">
+		                <a th:href="@{/product/foreign(productType='FOREIGN_DEP')}">- 외화예금상품</a>
+		                <a th:href="@{/foreign/deposit/foreignDepositGuide}">- 외화예금안내</a>
+		                <a th:href="@{/foreign/deposit/foreignDepositBenefit}">- 외화예금우대서비스</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>외화송금</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ외화송금서비스</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/remittance/remittanceInternet}">- 인터넷외화송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceBNKGlobal}">- BNK공동해외송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceFast}">- 해외즉시송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceAuto}">- 해외즉시자동송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceChina}">- 중국지역스피드송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceCurrency}">- 이종통화송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceRateAuto}">- 지정환율자동송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceMobile}">- 모바일송금서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceEmail}">- 해외송금 E-mail 서비스</a>
+		                    <a th:href="@{/foreign/remittance/remittanceKRW}">- 원화 해외송금서비스</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ외화송금보내기</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/remittance/remittanceGuide}">- 송금안내</a>
+		                    <a th:href="@{/foreign/remittance/remittanceMethod}">- 송금방법</a>
+		                    <a th:href="@{/foreign/remittance/remittanceCountryInfo}">- 국가별송금시필요정보</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/remittance/remittanceReceive}">ㆍ외화송금받기</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>수출입금융</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ수출업무</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/tradeFinance/export/exportAgreement}">- 수출거래약정</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportLCNotice}">- 수출신용장통지</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportLCTransfer}">- 수출신용장양도</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportBillPurchase}">- 수출환어음매입</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportCollection}">- 수출환어음추심</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportTracking}">- 수출서류 TRACKING 서비스</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportDebtService}">- 해외채권추심대행서비스</a>
+		                    <a th:href="@{/foreign/tradeFinance/export/exportForgaiting}">- 포페이팅 서비스</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ수입업무</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/tradeFinance/import/importAgreement}">- 수입거래약정</a>
+		                    <a th:href="@{/foreign/tradeFinance/import/importLCOpen}">- 수입신용장개설</a>
+		                    <a th:href="@{/foreign/tradeFinance/import/importGuarantee}">- 수입화물선취보증서발급</a>
+		                    <a th:href="@{/foreign/tradeFinance/import/importDocumentRelease}">- 선적서류인도</a>
+		                    <a th:href="@{/foreign/tradeFinance/import/importInternetLC}">- 인터넷수입신용장개설</a>
+		                    <a th:href="@{/foreign/tradeFinance/import/importUsance}">- 당행인수내국수입유산스서비스</a>
+		                    <a th:href="@{/foreign/tradeFinance/import/importChinaTrade}">- 중국위안화무역결제서비스</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ내국신용장/무역금융</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/tradeFinance/domestic/domesticLC}">- 내국신용장개설</a>
+		                    <a th:href="@{/foreign/tradeFinance/domestic/domesticCollection}">- 판매대금추심의뢰서매입</a>
+		                    <a th:href="@{/foreign/tradeFinance/domestic/domesticSettlement}">- 내국신용장의 결제</a>
+		                    <a th:href="@{/foreign/tradeFinance/domestic/purchaseConfirm}">- 구매확인서업무안내</a>
+		                    <a th:href="@{/foreign/tradeFinance/domestic/tradeFinanceGuide}">- 무역금융업무안내</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ전자무역</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/tradeFinance/electronic/ediGuide}">- EDI업무안내</a>
+		                    <a th:href="@{/foreign/tradeFinance/electronic/ediApply}">- EDI신청방법</a>
+		                    <a th:href="@{/foreign/tradeFinance/electronic/ediSupport}">- EDI지원서비스</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/tradeFinance/customsConsulting}">ㆍ수출입통관 상담 서비스 안내</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>국내외투자</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-sub-menu active">
+		                <a th:href="@{/foreign/investment/overseasInvestment}">- 해외직접투자</a>
+		                <a th:href="@{/foreign/investment/overseasBranch}">- 해외사무소(지사)설치</a>
+		                <a th:href="@{/foreign/investment/overseasRealEstate}">- 해외부동산투자</a>
+		                <a th:href="@{/foreign/investment/foreignDomesticInvestment}">- 외국인국내투자</a>
+		                <a th:href="@{/foreign/investment/foreignDomesticRealEstate}">- 외국인국내부동산투자</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>환전</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ환전안내</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/exchange/exchangeCurrency}">- 환전가능통화</a>
+		                    <a th:href="@{/foreign/exchange/exchangeAmount}">- 환전가능금액</a>
+		                    <a th:href="@{/foreign/exchange/exchangeTip}">- 환전요령</a>
+		                    <a th:href="@{/foreign/exchange/fakeMoneyGuide}">- 위변조화폐식별요령</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ환전 서비스 안내</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/exchange/autoExchange}">- 지정환율자동환전</a>
+		                    <a th:href="@{/foreign/exchange/exchangeGift}">- 외화 선물하기</a>
+		                    <a th:href="@{/foreign/exchange/oneExchange}">- ONE환전</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ환율우대</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/exchange/preferentialGuide}">- 환율우대란</a>
+		                    <a th:href="@{/foreign/exchange/preferentialType}">- 환율우대종류</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/exchange/exchangeCalculator}">ㆍ환전계산기</a>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/exchange/hubBranch}">ㆍ동북아허브영업점</a>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/exchange/foreignCheckGuide}">ㆍ외화수표매입안내</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>환율</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ환율 제공 서비스</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/exchangeRate/rateNotification}">- 지정환율통지서비스</a>
+		                    <a th:href="@{/foreign/exchangeRate/emailRate}">- 이메일 환율 통지 서비스</a>
+		                    <a th:href="@{/foreign/exchangeRate/freeRate}">- 무료환율서비스</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/exchangeRate/riskManagement}">ㆍ환리스크관리</a>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/exchangeRate/preferentialCoupon}">ㆍ환율우대쿠폰</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>유학/이주/여행</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ유학</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/studyMigrationTravel/studyGuide}">- 해외유학서비스안내</a>
+		                    <a th:href="@{/foreign/studyMigrationTravel/studyExchange}">- 유학경비환전/송금</a>
+		                    <a th:href="@{/foreign/studyMigrationTravel/studySupport}">- 해외유학지원서비스</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ이주</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/studyMigrationTravel/migrationGuide}">- 해외이주서비스안내</a>
+		                    <a th:href="@{/foreign/studyMigrationTravel/migrationExchange}">- 해외이주비환전/송금</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ여행</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/studyMigrationTravel/travelNotice}">- 여행시유의사항</a>
+		                    <a th:href="@{/foreign/studyMigrationTravel/travelExchange}">- 여행경비환전</a>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>부가서비스</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ환율/이율조회</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/additionalService/exchangeRateSearch}">- 환율조회</a>
+		                    <a th:href="@{/foreign/additionalService/periodExchangeRate}">- 기간별환율조회</a>
+		                    <a th:href="@{/foreign/additionalService/foreignDepositRate}">- 외화예금이율</a>
+		                    <a th:href="@{/foreign/additionalService/overseasMarketRate}">- 해외시장주요금리</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/additionalService/foreignFormProgram}">ㆍ외환서식 프로그램</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>글로벌파워셀러 특화서비스</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-sub-menu active">
+		                <a th:href="@{/foreign/globalPowerSeller/globalPowerSellerGuide}">- 서비스 안내</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="foreign-dropdown">
+		        <button type="button" class="foreign-dropdown-btn">
+		            <span>외환이용가이드</span>
+		            <span class="foreign-arrow">›</span>
+		        </button>
+		
+		        <div class="foreign-dropdown-menu">
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/guide/foreignConsulting}">ㆍ외환상담안내</a>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/guide/foreignLaw}">ㆍ법규/규정</a>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <button type="button" class="foreign-sub-title">ㆍ수수료</button>
+		                <div class="foreign-sub-menu">
+		                    <a th:href="@{/foreign/guide/exportImportFee}">- 수출입관련수수료</a>
+		                    <a th:href="@{/foreign/guide/exchangeRemittanceFee}">- 환전/송금관련 수수료</a>
+		                </div>
+		            </div>
+		
+		            <div class="foreign-group">
+		                <a class="foreign-single-link" th:href="@{/foreign/guide/foreignFAQ}">ㆍ외환 FAQ</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		</nav>
+    </aside>
+
+    <main class="product-main">
+
+        <section class="product-head">
+            <div>
+                <h1>외환 상품몰</h1>
+				<p>외화예금, 외화적금, 환전, 송금 등 외환 서비스를 한눈에 확인할 수 있습니다</p>
+            </div>
+
+            <select name="productType">
+			    <option value="">전체 외환 상품</option>
+			    <option value="FOREIGN_DEP">외화예금</option>
+			    <option value="FOREIGN_SAV">외화적금</option>
+			</select>
+        </section>
+
+        <form class="product-search" method="get" th:action="@{/product/foreign}">
+            <input type="text"
+                   name="keyword"
+                   placeholder="상품명 또는 키워드를 입력하세요."
+                   th:value="${param.keyword}">
+
+
+
+            <select name="sort">
+                <option value="">최신순</option>
+                <option value="rate">금리순</option>
+                <option value="name">이름순</option>
+            </select>
+
+            <button type="submit">검색</button>
+        </form>
+
+        <section class="recommend-section">
+            <h2>추천 상품</h2>
+
+            <div class="recommend-grid">
+                <th:block th:each="item, stat : ${products.products}">
+                    <article class="recommend-card clickable-card"
+                             th:if="${stat.index < 3}"
+                             th:data-url="@{/product/{id}(id=${item.productId})}"
+                             onclick="location.href=this.dataset.url">
+
+                        <div class="card-labels">
+                            <span th:switch="${item.productType}">
+                                <span th:case="'DEPOSIT'">예금</span>
+                                <span th:case="'SAVINGS'">적금</span>
+                                <span th:case="'FOREIGN_DEP'">외화예금</span>
+                                <span th:case="'FOREIGN_SAV'">외화적금</span>
+                                <span th:case="'CORP_DEP'">기업예금</span>
+                                <span th:case="'CORP_SAV'">기업적금</span>
+                                <span th:case="*" th:text="${item.productType}">상품</span>
+                            </span>
+
+                            <a th:href="@{/product/{id}(id=${item.productId})}"
+                               onclick="event.stopPropagation();">
+                                상품 상세
+                            </a>
+                        </div>
+
+                        <h3 th:text="${item.productName}">상품명</h3>
+                        <p th:text="${item.productDesc}">상품 설명</p>
+
+                        <ul>
+                            <li>
+                                가입대상
+                                <strong th:switch="${item.targetLarge}">
+                                    <span th:case="'ALL'">전체고객</span>
+                                    <span th:case="'PERSONAL'">개인고객</span>
+                                    <span th:case="'COMPANY'">기업고객</span>
+                                    <span th:case="*" th:text="${item.targetLarge}">전체고객</span>
+                                </strong>
+                            </li>
+                            <li>
+                                최고금리
+                                <strong>연 <span th:text="${item.maxRate}">0</span>%</strong>
+                            </li>
+                            <li>
+                                가입기간
+                                <strong>
+                                    <span th:text="${item.minPeriodMonth}">1</span>
+                                    ~
+                                    <span th:text="${item.maxPeriodMonth}">36</span>개월
+                                </strong>
+                            </li>
+                        </ul>
+                    </article>
+                </th:block>
+            </div>
+        </section>
+
+        <section class="all-product-section" id="compareArea">
+            <div class="section-title-row">
+                <h2>전체 상품</h2>
+                <span th:text="|총 ${products.totalCount}개|">총 0개</span>
+            </div>
+
+            <table class="product-table">
+                <thead>
+                <tr>
+                    <th>상품명</th>
+                    <th>상품분류</th>
+                    <th>가입대상</th>
+                    <th>금리/수수료</th>
+                    <th>상품특징</th>
+                    <th>비교함</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="item : ${products.products}"
+                    class="clickable-row"
+                    th:data-url="@{/product/{id}(id=${item.productId})}"
+                    onclick="location.href=this.dataset.url">
+
+                    <td>
+                        <a th:href="@{/product/{id}(id=${item.productId})}"
+                           th:text="${item.productName}"
+                           onclick="event.stopPropagation();">
+                            상품명
+                        </a>
+                    </td>
+
+                    <td th:switch="${item.productType}">
+                        <span th:case="'DEPOSIT'">예금</span>
+                        <span th:case="'SAVINGS'">적금</span>
+                        <span th:case="'FOREIGN_DEP'">외화예금</span>
+                        <span th:case="'FOREIGN_SAV'">외화적금</span>
+                        <span th:case="'CORP_DEP'">기업예금</span>
+                        <span th:case="'CORP_SAV'">기업적금</span>
+                        <span th:case="*" th:text="${item.productType}">상품</span>
+                    </td>
+
+                    <td th:switch="${item.targetLarge}">
+                        <span th:case="'ALL'">전체고객</span>
+                        <span th:case="'PERSONAL'">개인고객</span>
+                        <span th:case="'COMPANY'">기업고객</span>
+                        <span th:case="*" th:text="${item.targetLarge}">전체고객</span>
+                    </td>
+
+                    <td>
+                        연 <span th:text="${item.maxRate}">0</span>%
+                    </td>
+
+                    <td th:text="${item.productDesc}">상품설명</td>
+
+                    <td>
+                        <input type="checkbox"
+                               class="compare-check"
+                               onclick="event.stopPropagation();"
+                               th:data-id="${item.productId}"
+                               th:data-name="${item.productName}"
+                               th:data-type="${item.productType}"
+                               th:data-target="${item.targetLarge}"
+                               th:data-target-detail="${item.targetDetail}"
+                               th:data-rate="${item.maxRate}"
+                               th:data-desc="${item.productDesc}"
+                               th:data-min-period="${item.minPeriodMonth}"
+                               th:data-max-period="${item.maxPeriodMonth}"
+                               th:data-min-amount="${item.minAmount}"
+                               th:data-max-amount="${item.maxAmount}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="compare-action-wrap">
+                <button type="button" id="compareBtn">선택 상품 비교하기</button>
+            </div>
+
+            <div class="paging-wrap" th:if="${products.totalPage > 0}">
+                <a th:if="${products.page > 1}"
+                   th:href="@{/product/foreign(page=${products.page - 1}, keyword=${param.keyword}, productType=${param.productType}, sort=${param.sort})}">
+                    이전
+                </a>
+
+                <th:block th:each="i : ${#numbers.sequence(1, products.totalPage)}">
+                    <a th:href="@{/product/foreign(page=${i}, keyword=${param.keyword}, productType=${param.productType}, sort=${param.sort})}"
+                       th:text="${i}"
+                       th:classappend="${i == products.page} ? 'active'">
+                    </a>
+                </th:block>
+
+                <a th:if="${products.page < products.totalPage}"
+                   th:href="@{/product/foreign(page=${products.page + 1}, keyword=${param.keyword}, productType=${param.productType}, sort=${param.sort})}">
+                    다음
+                </a>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<div class="compare-modal" id="compareModal">
+    <div class="compare-modal-box">
+        <div class="compare-modal-head">
+            <div>
+                <h2>맞춤 상품 비교</h2>
+                <p class="compare-sub-title">
+                    내 조건에 맞는 상품을 비교하고 추천 결과를 확인해보세요
+                </p>
+            </div>
+            <button type="button" id="compareCloseBtn">×</button>
+        </div>
+
+        <div class="compare-user-input">
+            <label>
+                가입대상
+                <select id="compareTarget">
+				    <option value="PERSONAL" selected>개인</option>
+				    <option value="COMPANY">기업</option>
+				</select>
+            </label>
+
+            <label>
+                예치 예정 금액
+                <input type="number" id="compareAmount" placeholder="예: 10000000">
+            </label>
+
+            <label>
+                희망 가입기간
+                <input type="number" id="comparePeriod" placeholder="예: 12">
+            </label>
+
+            <label>
+                나이
+                <input type="number" id="compareAge" placeholder="예: 25">
+            </label>
+        </div>
+
+        <div class="compare-result-box" id="compareResultBox">
+            비교할 상품을 선택해주세요.
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{footer :: footer}"></div>
+
+<script th:src="@{/js/product/productComparePopup.js}"></script>
+<script th:src="@{/js/product/foreign.js}"></script>
+</body>
+</html>
